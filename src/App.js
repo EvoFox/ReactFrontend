@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
-import { Container, HeadContainer, Content } from "./App.styled";
-import Header from "./components/Header/Header";
+import { Container, } from "./App.styled";
+
 
 import "./App.css";
 
@@ -11,11 +10,7 @@ const App = () => {
 
 	return (
 		<Container>
-			<BrowserRouter>
-				<HeadContainer></HeadContainer>
-
-				<></>
-			</BrowserRouter>
+			
 		</Container>
 	);
 };

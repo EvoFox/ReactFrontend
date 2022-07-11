@@ -1,4 +1,4 @@
-const Login = () => {
+const ProfileBar = () => {
 	// Placeholder
 	return (
 		<>
@@ -7,4 +7,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default ProfileBar;
