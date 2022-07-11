@@ -1,3 +1,9 @@
+# Instagram Clone
+
+This project was undertaken as a React refresher during my Code Nation coding bootcamp. It's goal is to bring me back up to speed on some of the methods used in React development that were learned a month prior.
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
