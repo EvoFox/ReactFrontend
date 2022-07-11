@@ -1,8 +1,8 @@
 :root {
   /* Primary colour scheme variations */
-  --c-primary: #000;
-  --c-primary-light: #000;
-  --c-primary-dark: #000;
+  --c-primary: #fff;
+  --c-primary-light: #c0c0c0;
+  --c-primary-dark: #808080;
 
   /* Secondary colour scheme variations */
   --c-secondary: #000;

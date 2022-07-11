@@ -11,24 +11,18 @@ export const Container = styled.div`
 	justify-content: space-around;
 `;
 
-export const HeadContainer = styled.header`
-	width: 100%;
-	height: 150px;
-
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	margin-bottom: 6%;
-	background-color: var(--c-primary-dark);
-`;
-
 export const Content = styled.div`
-	width: calc(100vw - 100px);
+	width: 80%;
 	min-height: 100vh;
 
 	display: flex;
+	flex-direction: column;
 	flex-wrap: wrap;
+	align-items: center;
 	justify-content: space-around;
 `;
 
+export const LogIn = styled.button`
+	height: 50px;
+	width: 100px;
+`;
