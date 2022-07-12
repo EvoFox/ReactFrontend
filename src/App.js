@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 
-import { Container, Content, LogIn } from "./App.styled";
+import { Container, Content } from "./App.styled";
 
 import "./App.css";
 import Post from "./components/Post/Post";
+import Login from "./components/Login/Login";
 
 const App = () => {
 	const [loggedIn, setLoggedIn] = useState(false);
 	const [photos, setPhotos] = useState([]);
+	const [user, setUser] = useState();
 
 	const fetchImages = async () => {
 		const res = await fetch("https://picsum.photos/v2/list");
@@ -25,17 +27,16 @@ const App = () => {
 	return (
 		<Container>
 			<Content>
-				<LogIn onClick={logIn}>Log In/Out</LogIn>
-				{!loggedIn ? (
+				<Login setter={setUser} />
+				<p>{user}</p>
+				{user ? (
 					<h2>Not Logged In</h2>
 				) : (
-					(
-						photos.map((item, i) => {
-							return (
-								<Post author={item.author} image={item.download_url} key={i} />
-							);
-						})
-					)
+					photos.map((item, i) => {
+						return (
+							<Post author={item.author} image={item.download_url} key={i} />
+						);
+					})
 				)}
 			</Content>
 		</Container>

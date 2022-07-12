@@ -5,3 +5,7 @@ export const LoginImage = styled.image`
 	width: 45%;
 	margin-right: 2.5%;
 `;
+
+export const LoginForm = styled.form`
+	
+`;
