@@ -1,8 +1,8 @@
 import { PostWrapper } from "./Post.styled";
 
-const Post = ({ author, image }) => {
+const Post = ({ author, image, key }) => {
 	return (
-		<PostWrapper>
+		<PostWrapper key={key}>
 			<h2>{author}</h2>
 			<img src={image} />
 		</PostWrapper>
