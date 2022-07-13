@@ -1,7 +1,13 @@
 // Houses fetch requests
+const endpoint = {
+	user: "http://localhost:5001/user", //Contins a POST method
+	login: "http://localhost:5001/login", // Contains a POST and a GET method
+	changePassword: "http://localhost:5001/change-password", // Contains a PUT method
+	deleteUser: "http://localhost:5001/delete-user", // Contains a DELETE method
+};
 export const signUp = async (username, email, pass, setter) => {
 	try {
-		const res = await fetch("http://localhost:5001/user", {
+		const res = await fetch(endpoint.user, {
 			method: "POST", // HTTP Verb
 			headers: { "Content-Type": "application/json" }, // Sending JSON data instructions
 			body: JSON.stringify({ username, email, pass }), // Body turned into JSON with stringify
@@ -15,24 +21,38 @@ export const signUp = async (username, email, pass, setter) => {
 
 export const Login = async (username, pass, token, setter) => {
 	try {
-		let res = undefined;
+		// Define request variables to be defined based on the presence of a JSON Web Token
+		let method = undefined;
+		let headers = undefined;
+		let body = undefined;
+
 		if (!token) {
-			res = await fetch("http://localhost:5001/login", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({
-					username,
-					pass,
-				}),
+			// If no token, set method to POST, headers to only include Content-Type and the Body to contain the username and password as JSON
+			console.log("No token");
+			method = "POST";
+			headers = { "Content-Type": "application/json" };
+			body = JSON.stringify({
+				username,
+				pass,
 			});
 		} else {
-			res = await fetch("http://localhost:5001/user", {
-				method: "GET",
-				headers: { "Content-Type": "application/json", Authorization: token },
-			});
+			// If a token is provided, set method to GET, and headers to include Content-Type and Authorization
+			console.log("token");
+			method = "GET";
+			headers = { "Content-Type": "application/json", Authorization: token };
 		}
+
+		// Send the request based on variables and store as res
+		const res = await fetch(endpoint.login, {
+			method: method,
+			headers: headers,
+			body: body,
+		});
+
+		// Get the data from res as JSON and set the username using the drilled down function
 		const data = await res.json();
-		setter(data.user.username);
+		console.log(data);
+		setter(data.user);
 	} catch (error) {
 		console.log(error);
 	}
