@@ -1,14 +1,8 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-	width: 100%;
-	min-height: 100vh;
 
-	display: flex;
-	justify-content: center;
-`;
 
-export const Wrapper = styled.div`
+export const LoginWrapper = styled.div`
 	width: 80%;
 	padding-top: 5%;
 	display: flex;
