@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 
 import { signUp, Login } from "../../utils";
+import { Container } from "../Shared.styled";
 import {
-	Container,
-	Wrapper,
+	LoginWrapper,
 	Image,
 	FormWrapper,
 	Form,
@@ -24,13 +24,13 @@ const LoginForm = ({ setter, user }) => {
 			await signUp(username, email, pass, setter);
 		} else {
 			// Something
-			// await
+			await Login(username, pass, null, setter);
 		}
 	};
 
 	return (
 		<Container>
-			<Wrapper>
+			<LoginWrapper>
 				{user && <Navigate to="/gallery" />}
 				<Image src="https://www.instagram.com/static/images/homepage/screenshots/screenshot3.png" />
 				<FormWrapper>
@@ -39,10 +39,12 @@ const LoginForm = ({ setter, user }) => {
 							onChange={(e) => setUsername(e.target.value)}
 							placeholder="Username"
 						/>
-						<input
-							onChange={(e) => setEmail(e.target.value)}
-							placeholder="User@Email.com"
-						/>
+						{!existingAccount && (
+							<input
+								onChange={(e) => setEmail(e.target.value)}
+								placeholder="User@Email.com"
+							/>
+						)}
 						<input
 							onChange={(e) => setPass(e.target.value)}
 							type="password"
@@ -56,7 +58,7 @@ const LoginForm = ({ setter, user }) => {
 						{existingAccount ? "Don't" : "Already"} have an account?{" "}
 					</SwitchButton>
 				</FormWrapper>
-			</Wrapper>
+			</LoginWrapper>
 		</Container>
 	);
 };
