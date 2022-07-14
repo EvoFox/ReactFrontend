@@ -60,8 +60,10 @@ export const Login = async (username, pass, token, setter) => {
 
 export const ChangePassword = async (username, pass, newPass) => {
 	try {
-		const res = await fetch("http://localhost:5001/change-password", {
-			method: "POST",
+		console.log(JSON.stringify({ username, pass, newPass }));
+		console.log(pass);
+		const res = await fetch(endpoint.changePassword, {
+			method: "PUT",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ username, pass, newPass }),
 		});
