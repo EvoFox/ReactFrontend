@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 import { signUp, Login } from "../../utils";
@@ -17,6 +17,12 @@ const LoginForm = ({ setter, user }) => {
 	const [email, setEmail] = useState();
 	const [pass, setPass] = useState();
 	const [existingAccount, setExistingAccount] = useState(false);
+
+	useEffect(() => {
+		if (localStorage.key("account")) {
+			Login(null, null, localStorage.getItem("account"), null);
+		}
+	});
 
 	const submitHandler = async (e) => {
 		e.preventDefault();

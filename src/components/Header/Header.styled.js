@@ -5,19 +5,22 @@ export const BarWrapper = styled.nav`
 	width: 100%;
 	background-color: lightgray;
 
-	padding-right: 15px;
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: flex-start;
+	padding: 15px;
 
-	a {
+	ul {
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: flex-start;
+		list-style: none;
+	}
+	ul li {
+		appearance: a;
+		-moz-appearance: a;
 		width: 200px;
 		height: 2em;
-		margin-top: 0.5em;
-		border: 1px solid;
-		margin-left: 15px;
-		text-align: center;
 
-        
+		border: 1px solid;
+		margin-bottom: 25px;
+		text-align: center;
 	}
 `;
