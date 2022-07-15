@@ -5,15 +5,17 @@ const endpoint = {
 	changePassword: "http://localhost:5001/change-password", // Contains a PUT method
 	deleteUser: "http://localhost:5001/delete-user", // Contains a DELETE method
 };
+
 export const signUp = async (username, email, pass, setter) => {
 	try {
-		const res = await fetch(endpoint.user, {
+		const res = await fetch(`${process.env.REACT_APP_REST_API}user`, {
 			method: "POST", // HTTP Verb
 			headers: { "Content-Type": "application/json" }, // Sending JSON data instructions
 			body: JSON.stringify({ username, email, pass }), // Body turned into JSON with stringify
 		});
 		const data = await res.json();
 		setter(data.user.username);
+		localStorage.setItem("account", data.token);
 	} catch (error) {
 		console.log(error);
 	}
@@ -39,11 +41,13 @@ export const Login = async (username, pass, token, setter) => {
 			// If a token is provided, set method to GET, and headers to include Content-Type and Authorization
 			console.log("token");
 			method = "GET";
-			headers = { "Content-Type": "application/json", Authorization: token };
+			headers = {
+				Authorization: localStorage.getItem("account"),
+			};
 		}
 
 		// Send the request based on variables and store as res
-		const res = await fetch(endpoint.login, {
+		const res = await fetch(`${process.env.REACT_APP_REST_API}login`, {
 			method: method,
 			headers: headers,
 			body: body,
@@ -62,7 +66,7 @@ export const ChangePassword = async (username, pass, newPass) => {
 	try {
 		console.log(JSON.stringify({ username, pass, newPass }));
 		console.log(pass);
-		const res = await fetch(endpoint.changePassword, {
+		const res = await fetch(`${process.env.REACT_APP_REST_API}change-password`, {
 			method: "PUT",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ username, pass, newPass }),
@@ -76,7 +80,7 @@ export const ChangePassword = async (username, pass, newPass) => {
 
 export const DeleteUser = async (username, email, pass) => {
 	try {
-		const res = await fetch("http://localhost:5001/delete-user", {
+		const res = await fetch(`${process.env.REACT_APP_REST_API}delete-user`, {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ username, email, pass }),

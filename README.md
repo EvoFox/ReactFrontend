@@ -2,6 +2,11 @@
 
 This project was undertaken as a React refresher during my Code Nation coding bootcamp. It's goal is to bring me back up to speed on some of the methods used in React development that were learned a month prior.
 
+
+### Todo list: 
+- Refactor fetch requests to avoid repeating code
+- Implement delete
+
 ---
 
 # Getting Started with Create React App

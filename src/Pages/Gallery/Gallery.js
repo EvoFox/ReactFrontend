@@ -7,7 +7,7 @@ import { Navigate } from "react-router-dom";
 const Gallery = ({ user, photos }) => {
 	return (
 		<Container>
-				<Header />
+			<Header />
 			<GalleryWrapper>
 				{!user && <Navigate to={"/"} />}
 				{/* <Header /> display flex, row. height 150px. contains username as a drop down maybe, or perhaps a simple logout button, username can be clicked to go to profile */}
