@@ -3,12 +3,13 @@ import PasswordChange from "../../components/PasswordChange/PasswordChange";
 import { Container } from "../Shared.styled";
 import { ContentWrapper } from "../Profile/Profile.styled";
 
-const Profile = ({ user }) => {
+const Profile = ({ user, setter }) => {
+	console.log(user);
 	return (
 		<Container>
 			<Header />
 			<ContentWrapper>
-				<PasswordChange />
+				<PasswordChange user={user} setter={setter} />
 			</ContentWrapper>
 		</Container>
 	);

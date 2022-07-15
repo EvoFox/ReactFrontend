@@ -66,11 +66,14 @@ export const ChangePassword = async (username, pass, newPass) => {
 	try {
 		console.log(JSON.stringify({ username, pass, newPass }));
 		console.log(pass);
-		const res = await fetch(`${process.env.REACT_APP_REST_API}change-password`, {
-			method: "PUT",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ username, pass, newPass }),
-		});
+		const res = await fetch(
+			`${process.env.REACT_APP_REST_API}change-password`,
+			{
+				method: "PUT",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ username, pass, newPass }),
+			}
+		);
 		const data = await res.json();
 		console.log(data);
 	} catch (error) {
@@ -78,14 +81,17 @@ export const ChangePassword = async (username, pass, newPass) => {
 	}
 };
 
-export const DeleteUser = async (username, email, pass) => {
+export const DeleteUser = async (token, setter) => {
 	try {
-		const res = await fetch(`${process.env.REACT_APP_REST_API}delete-user`, {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ username, email, pass }),
+		const res = await fetch(`${process.env.REACT_APP_REST_API}delete-account`, {
+			method: "DELETE",
+			headers: { Authorization: token },
 		});
 		const data = await res.json();
+		localStorage.removeItem("account");
+		if (data.user.deletedCount > 0) {
+			setter("");
+		}
 		console.log(data);
 	} catch (error) {
 		console.log(error);
